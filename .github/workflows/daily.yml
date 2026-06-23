@@ -1,0 +1,36 @@
+# 这个工作流的名字（随便起，显示在 GitHub Actions 页面）
+name: 每日财经新闻推送
+
+# —— 什么时候触发 ——
+on:
+  schedule:
+    # cron 定时：下面这串是"每天 UTC 时间 0 点"，换算成北京时间是早上 8 点
+    - cron: '0 0 * * *'
+  # 允许你在 GitHub 页面手动点按钮触发（方便测试，不用等到第二天）
+  workflow_dispatch:
+
+# —— 要做的任务 ——
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest   # 借用 GitHub 的一台 Linux 云端电脑
+
+    steps:
+      # 第一步：把你 GitHub 仓库里的代码下载到这台云端电脑
+      - name: 获取代码
+        uses: actions/checkout@v4
+
+      # 第二步：在云端电脑装好 Python
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 第三步：装上你程序需要的库
+      - name: 安装依赖库
+        run: pip install feedparser requests python-dotenv
+
+      # 第四步：运行你的程序。关键：把 Secrets 里的 Key 注入成环境变量
+      - name: 运行财经 agent
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: python main.py
