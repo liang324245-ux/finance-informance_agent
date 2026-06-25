@@ -15,9 +15,8 @@ SOURCES = {
     "人民网-时政": "http://www.people.com.cn/rss/politics.xml",
     "人民网-财经": "http://www.people.com.cn/rss/finance.xml",
     "人民网-国际": "http://www.people.com.cn/rss/world.xml",
-
+    "财联社": "http://host.docker.internal:1200/cls/telegraph",
     # —— 待办源（留口，以后专项接入）——
-    # 财联社（最重要）：公共 RSSHub 全部不通，需自建私有 RSSHub
     # 巨潮资讯网：公告/财报，无官方 RSS，需逆向其加密接口
     # 国家统计局：PPI/PMI 等指标，需确认改版后的数据栏目
 }
