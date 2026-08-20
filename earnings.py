@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
-FEISHU_WEBHOOK = "https://open.feishu.cn/open-apis/bot/v2/hook/f59e5349-365f-4b19-8f6a-69930b1a2794"
+FEISHU_WEBHOOK = "xxx"
 
 WATCHED_TICKERS = {
     "MSFT": "微软",
